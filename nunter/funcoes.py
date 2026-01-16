@@ -1,3 +1,19 @@
+def cadastro():
+    while True:
+        try:
+            nome = input('Digite seu nome completo: ')
+            senha1 = input('Digite sua senha: ')
+            senha2 = input('Confirme sua senha: ')
+            if senha1 != senha2:
+                print('As senhas não coincidem, tente novamente')
+                print('='*30)
+            else:
+                print('Cadastro efetuado com sucesso')
+                print('='*30)
+                break
+        except:
+            print('Erro')
+
 def sacar(valor = 0, total = 0, cart = 0):
     tot = total - valor
     cart = valor
