@@ -39,69 +39,74 @@ def banco():
         print('4 - Transferir')
         print('5 - Ver Extrato')
         print('6 - Sair ')
-        op = int(input('Sua Opção: '))
-        if op == 1:
-            try:
-                print('='*30)
-                print(f'O saldo em sua conta é: R${tot}')
-                print(f'E você tem R${cart} em sua carteira')
-            except:
-                print('Ocorreu um erro!')
-        elif op == 2:
-            try:
-                print('='*30)
-                qnt = float(input('Quanto você quer sacar: '))
-                if qnt <= tot:
-                    sc = sacar(qnt,tot,cart)
-                    print(f'Agora seu saldo é de: {sc[0]}')
-                    print(f'E você tem R${sc[1]} em sua carteira')
-                    tot = sc[0]
-                    cart = sc[1]
-                else:
-                    print('Saldo indisponivel')
-                    print(f'Você tem R${tot} disponiveis para saque')
-            except:
-                print('Digite um numero racional valido')
-        elif op == 3:
-            try:
-                print('='*30)
-                qnt = float(input('Quanto você quer depositar: '))
-                if qnt <= cart:
-                    dp = deposito(qnt, tot, cart)
-                    print(f'Agora seu saldo é de: {dp[0]}')
-                    print(f'E você tem R${dp[1]} em sua carteira')
-                    tot = dp[0]
-                    cart = dp[1]
-                else:
-                    print('Saldo indisponivel')
-                    print(f'Você tem R${cart} disponiveis para deposito')
-            except:
-                print('Digite um numero racional valido')
-        elif op == 4:
+        try:
+            op = int(input('Sua Opção: '))
+        except:
             print('='*30)
-            qm = input('Para quem você quer transferir: ')
-            try:
-                qnt = float(input('Quanto você quer transferir: '))
-                if qnt <= tot:
-                    tot -= qnt
-                    print(f'Você transferiu R${qnt} para {qm}\nAgora seu saldo é de: {tot}')
-                    extrato.append(qm)
-                    extrato.append(qnt)
-                    #Par Nome Impar Quantia
-                else:
-                    print('Saldo indisponivel')
-                    print(f'Você tem R${tot} disponiveis para transferencia')
-            except:
-                print('Digite um numero racional valido')
-        elif op == 5:
-            print('='*30)
-            for pos, val in enumerate(extrato):
-                if pos % 2 == 0:
-                    print(f'{val} - ', end='')
-                else:
-                    print(f'R${val}')
-        elif op == 6:
-            break
+            print('Digite um numero inteiro')
         else:
-            print(f'A opção {op} é invalida.')
-            print('='*30)
+            if op == 1:
+                try:
+                    print('='*30)
+                    print(f'O saldo em sua conta é: R${tot}')
+                    print(f'E você tem R${cart} em sua carteira')
+                except:
+                    print('Ocorreu um erro!')
+            elif op == 2:
+                try:
+                    print('='*30)
+                    qnt = float(input('Quanto você quer sacar: '))
+                    if qnt <= tot:
+                        sc = sacar(qnt,tot,cart)
+                        print(f'Agora seu saldo é de: {sc[0]}')
+                        print(f'E você tem R${sc[1]} em sua carteira')
+                        tot = sc[0]
+                        cart = sc[1]
+                    else:
+                        print('Saldo indisponivel')
+                        print(f'Você tem R${tot} disponiveis para saque')
+                except:
+                    print('Digite um numero racional valido')
+            elif op == 3:
+                try:
+                    print('='*30)
+                    qnt = float(input('Quanto você quer depositar: '))
+                    if  qnt <= cart:
+                        dp = deposito(qnt, tot, cart)
+                        print(f'Agora seu saldo é de: {dp[0]}')
+                        print(f'E você tem R${dp[1]} em sua carteira')
+                        tot = dp[0]
+                        cart = dp[1]
+                    else:
+                        print('Saldo indisponivel')
+                        print(f'Você tem R${cart} disponiveis para deposito')
+                except:
+                    print('Digite um numero racional valido')
+            elif op == 4:
+                print('='*30)
+                qm = input('Para quem você quer transferir: ')
+                try:
+                    qnt = float(input('Quanto você quer transferir: '))
+                    if qnt <= tot:
+                        tot -= qnt
+                        print(f'Você transferiu R${qnt} para {qm}\nAgora seu saldo é de: {tot}')
+                        extrato.append(qm)
+                        extrato.append(qnt)
+                        #Par Nome Impar Quantia
+                    else:
+                        print('Saldo indisponivel')
+                        print(f'Você tem R${tot} disponiveis para transferencia')
+                except:
+                    print('Digite um numero racional valido')
+            elif op == 5:
+                print('='*30)
+                for pos, val in enumerate(extrato):
+                    if pos % 2 == 0:
+                        print(f'{val} - ', end='')
+                    else:
+                        print(f'R${val}')
+            elif op == 6:
+                break
+            else:
+                print(f'A opção {op} é invalida.')
+                print('='*30)
